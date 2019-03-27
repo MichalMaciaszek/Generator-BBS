@@ -1,0 +1,14 @@
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\bin\Debug\BBSGenerator.exe.config
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\bin\Debug\BBSGenerator.exe
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\bin\Debug\BBSGenerator.pdb
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\MainWindow.g.cs
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\App.g.cs
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator_MarkupCompile.cache
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator_MarkupCompile.lref
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\MainWindow.baml
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator.g.resources
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator.Properties.Resources.resources
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator.csproj.GenerateResource.Cache
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator.exe
+c:\users\cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator.pdb
+C:\Users\Cebula\documents\visual studio 2015\Projects\BBSGenerator\BBSGenerator\obj\Debug\BBSGenerator.csprojResolveAssemblyReference.cache

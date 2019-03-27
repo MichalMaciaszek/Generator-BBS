@@ -1,0 +1,235 @@
+﻿<Window x:Class="BBSGenerator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BBSGenerator"
+        mc:Ignorable="d"
+        Title="BBS" Height="650" Width="500" MinHeight="250" MinWidth="450" WindowStartupLocation="CenterScreen">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+
+        <Border Padding="0" Background="#FFB6EED7">
+
+            <Grid Background="#FFB6EED7">
+                <TextBlock Text="Author : Michał Maciaszek" FontSize="8" HorizontalAlignment="Center" Margin="0 5 0 0"/>
+                <TabControl Background="#FFB6EED7" SelectionChanged="TabControl_SelectionChanged">
+                    <TabItem Header="Generator" Background="#FFB6EED7" HorizontalAlignment="Left" Width="69">
+                        <StackPanel>
+                            <TextBlock Text="BBS Generator" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Please provide the following data. Leaving s field empty is recommended" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                                    <Grid HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="s= " HorizontalAlignment="Center"/>
+                                        <TextBox Grid.Column="1" Name="S" MinWidth="30" MaxWidth="100" Margin="0 0 0 2" MaxLength="6" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Center" TextChanged="S_TextChanged"/>
+                                    </Grid>
+                                    <TextBlock Text="q and p must be a prime number." HorizontalAlignment="Center"/>
+                                    <Grid HorizontalAlignment="Center" Margin="62,0,98.2,0" Width="83">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="q= "/>
+
+                                        <ComboBox Loaded="comboBox_Loaded" x:Name="comboBox" Margin="23,0,9.8,58" SelectionChanged="comboBox_SelectionChanged"/>
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center" Margin="91,0,91.2,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="p= " Margin="37,-80,-37.2,80" Grid.ColumnSpan="2"/>
+                                        <ComboBox Loaded="comboBox2_Loaded" x:Name="comboBox2" Margin="51.4,-80,-78.6,138" SelectionChanged="comboBox2_SelectionChanged" RenderTransformOrigin="-0.586,-1.664" Grid.Column="1"/>
+
+                                    </Grid>
+                                    <Grid HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="112.6"/>
+                                            <ColumnDefinition Width="52.037"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="Length of the generated key = " Grid.ColumnSpan="3" Margin="0,0,29.637,0"/>
+                                        <TextBox Grid.Column="2" Name="N" MinWidth="30" MaxWidth="100" Margin="0.363,0,-0.363,2" MaxLength="10" PreviewTextInput="NumberValidationTextBox" TextChanged="N_TextChanged"/>
+                                    </Grid>
+                                    <Grid  HorizontalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Cursor="Hand" Name="Submit" Content="Submit" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Submit_Click"/>
+                                        <Button Cursor="Hand" Name="Refresh" Content="Refresh" Width="70" Background="#FFF9E0AB" Foreground="#FFAA860A" Grid.Column="1" Margin="5 0 5 0" Click="Refresh_Click"/>
+                                        <Button Cursor="Hand" Name="Save" Content="Save" Width="70" Background="#FFF9E0AB" Foreground="#FFAA860A" Grid.Column="2" Margin="5 0 5 0" Click="Save_Click"/>
+                                    </Grid>
+
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Generated Key:"/>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                        <TextBox Name="Key" IsReadOnly="True" Background="#eee" MaxHeight="250" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </TabItem>
+
+                    <!--Krok po kroku-->
+                    <TabItem Header="Explained" Background="#FFB6EED7">
+                        <StackPanel>
+                            <TextBlock Text="The BBS generator needs four numbers to work. Length of the generated key (n), seed (s), q and p, which both have to be prime. Please enter the data below." TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="n = "/>
+                                <TextBox Name="eN"  MinWidth="30" MaxLength="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Margin="0 0 0 3" TextChanged="eN_TextChanged"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="s = "/>
+                                <TextBox Name="eS"  MinWidth="30" MaxLength="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Margin="0 0 0 3" TextChanged="eS_TextChanged"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="p = "/>
+                                <TextBox Name="eP"  MinWidth="30" MaxLength="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Margin="0 0 0 3" TextChanged="eP_TextChanged"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="q = "/>
+                                <TextBox Name="eQ"  MinWidth="30" MaxLength="5" Grid.Column="1" PreviewTextInput="NumberValidationTextBox" Margin="0 0 0 3" TextChanged="eQ_TextChanged"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Cursor="Hand" Content="Submit" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Name="eSubmit" Click="eSubmit_Click"/>
+                                <Button Cursor="Hand" Content="Reset" Width="70"  Name="eReset" Click="eReset_Click" Grid.Column="1" Margin="5 0 0 0" Background="#FFF9E0AB" Foreground="#FFAA860A" />
+                            </Grid>
+                            <TextBlock Text="To get the first number in the key we need to solve (s^2)%M. Where M = p*q." TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <TextBlock Text="" Name="M" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Having the M value we calculate the first bit of the key. x1 = (s^2)%M." HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                            <TextBlock Text="" HorizontalAlignment="Center" Name="X"/>
+                            <TextBlock Text="It is time to add the bit to the key. We take the x1 and devide it by 2. If we get the rest we add the 1 to key, otherwise it's a 0. Now we get..." TextWrapping="Wrap" HorizontalAlignment="Center"/>
+                            <TextBlock Text="" Name="B" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Now we use the same method to get the second bit of the key. Except this time we replace s with x1. To get third we use x2 and so on and so on. We do this as many times as the value of n. In the end we get the key." HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                <TextBox Name="eKey" IsReadOnly="True" Background="#eee" MaxHeight="250" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0 3 0 0"/>
+                            </ScrollViewer>
+
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header="Strumieniowy" Background="#FFB6EED7" HorizontalAlignment="Left" Width="69" Height="22" Margin="-2.2,-2,0,0" VerticalAlignment="Bottom">
+                        <StackPanel Margin="0,0,0.2,-0.4">
+                            <Button Cursor="Hand" Name="Openkey" Content="Openkey" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Openkey_Click"/>
+                            <Button Cursor="Hand" Name="Opentext" Content="Opentext" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Opentext_Click"/>
+                            <Button Cursor="Hand" Name="Cipher" Content="Cipher" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Cipher_Click"/>
+                            <Button Cursor="Hand" Name="Decipher" Content="Decipher" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Decipher_Click"/>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Generator= "/>
+                                <TextBox Grid.Column="1" Name="generator" MinWidth="30" MaxWidth="100" MaxHeight="200" Margin="0 0 0 2" PreviewTextInput="NumberValidationTextBox" TextChanged="generator_TextChanged"/>
+                                <Button Cursor="Hand" Content="Wgraj zaszyfrowane"  Name="Wgraj" Click="Wgraj_Click" Grid.Column="1" Margin="121.2,38,-131.8,-37.8" Background="#FFF9E0AB" Foreground="#FFAA860A" />
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Message= " Margin="-51,0,50.6,0"/>
+                                <TextBox Name="Message" MinWidth="30" MaxWidth="100" MaxHeight="200" Margin="12,0,-51.4,2" TextChanged="Message_TextChanged" Grid.ColumnSpan="2"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Zaszyfrowane= " Margin="-30,0,29.4,-0.4"/>
+                                <TextBox Name="EncodedMessage" MinWidth="30" MaxWidth="100" Margin="59,0,-51.8,-0.4" PreviewTextInput="NumberValidationTextBox" TextChanged="EncodedMessage_TextChanged" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="76"/>
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Odszyfrowane= "/>
+                                <TextBox Grid.Column="1" Name="DecodedMessage" MinWidth="30" MaxWidth="100" Margin="0 0 0 2"  PreviewTextInput="NumberValidationTextBox" TextChanged="DecodedMessage_TextChanged"/>
+                                <Button Cursor="Hand" Content="Zapisz zaszyfrowane"  Name="Zapisz1" Click="Zapisz1_Click" Grid.Column="1" Margin="109.6,3,-120.6,-2.8" Background="#FFF9E0AB" Foreground="#FFAA860A" />
+                            </Grid>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Grid.Column="1" Name="DecodedMessage2" MinWidth="30" MaxWidth="2000" Margin="-124,8,-125,-140"  TextChanged="DecodedMessage2_TextChanged" HorizontalAlignment="Right" Width="249"/>
+                            </Grid>
+                        </StackPanel>
+
+
+                    </TabItem>
+                    <TabItem Header="Help" Background="#FFB6EED7" HorizontalAlignment="Left" Width="69" Height="22" Margin="-2.2,-2,0,0" VerticalAlignment="Bottom">
+                        <StackPanel>
+                            <Label x:Name="label" Content="Openkey - Otwarcie klucza z pliku."/>
+                            <Label x:Name="label2" Content="Opentext - Otwarcie tekstu z pliku."/>
+                            <Label x:Name="label3" Content="Cipher/Decipher - szyfrowanie i deszyfrowanie."/>
+                            <Label x:Name="label4" Content="Cipher/Decipher - szyfrowanie i deszyfrowanie."/>
+                            <Label x:Name="label9" Content="Możliwe jest również otwarcie i zapisanie zaszyfrowanego tekstu do pliku"/>
+                            <Label x:Name="label5" Content="Szyfrowanie strumieniowe przy użyciu operacji XOR."/>
+                            <Label x:Name="label6" Content="Dla binarnego pliku np 10111000"/>
+                            <Label x:Name="label7" Content="I klucza 01001000" Margin="0,0,0.2,0" HorizontalAlignment="Right" Width="405"/>
+                            <Label x:Name="label86" Content="Wynikiem będzie 11110000" Margin="32,0,0.2,0"/>
+
+                        </StackPanel>
+
+                    </TabItem>
+                    <TabItem Header="Testy" Background="Aqua" HorizontalAlignment="Left" Width="69" Height="22" Margin="-2.2,-2,0,0" VerticalAlignment="Bottom">
+                        <StackPanel>
+                            <Button Cursor="Hand" Name="Openkey2" Content="Openkey" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Openkey2_Click"/>
+                            <TextBox Grid.Column="1" Name="Tekst" MinWidth="30" MaxWidth="100" Margin="0 0 0 2"  PreviewTextInput="NumberValidationTextBox" TextChanged="Tekst_TextChanged"/>
+                            <Button Cursor="Hand" Name="Bittest" Content="TestBitow" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Bittest_Click"/>
+                            <TextBox Grid.Column="1" Name="wynikiBit" MinWidth="30" MaxWidth="100" Margin="0 0 0 2" TextChanged="wynikiBit_TextChanged"/>
+                            <Button Cursor="Hand" Name="Seriestest" Content="TestSeries" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="Seriestest_Click"/>
+                            <TextBox Grid.Column="1" Name="WynikiSeries" MinWidth="30" MaxWidth="100" Margin="0 0 0 2" TextChanged="WynikiSeries_TextChanged"/>
+                            <Button Cursor="Hand" Name="TestLong" Content="TestLong" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="TestLong_Click"/>
+                            <TextBox Grid.Column="1" Name="WynikiLong" MinWidth="30" MaxWidth="100" Margin="0 0 0 2" TextChanged="WynikiLong_TextChanged"/>
+                            <Button Cursor="Hand" Name="TestPoker" Content="TestPoker" Width="70" Background="#FFF5A9A9" Foreground="#FFC91111" Click="TestPoker_Click"/>
+                            <TextBox Grid.Column="1" Name="WynikiPoker" MinWidth="30" MaxWidth="100" Margin="0 0 0 2" TextChanged="WynikiPoker_TextChanged"/>
+                            <Button Cursor="Hand" Name="Zapisz" Content="Zapisz wyniki" Background="Yellow" Foreground="#FFC91111" Click="Zapisz_Click" Margin="195,0,194.2,0"/>
+                        </StackPanel>
+
+
+
+                    </TabItem>
+                    
+
+                </TabControl>
+
+
+                <Label x:Name="label1" Content="made by Michał Maciaszek" Height="100" Width="300" Margin="28,466,165.6,54"/>
+            </Grid>
+
+        </Border>
+    </ScrollViewer>
+</Window>
